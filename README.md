@@ -1,11 +1,11 @@
-    The URL of the functional, deployed application:
-    #### https://github.com/anitapeppercorn/Weather-Dashboard-Application
+The URL of the functional, deployed application:
+#### https://github.com/anitapeppercorn/Weather-Dashboard-Application
 
-    The URL of the GitHub repository: 
-    #### https://anitapeppercorn.github.io/Weather-Dashboard-Application/
+The URL of the GitHub repository: 
+#### https://anitapeppercorn.github.io/Weather-Dashboard-Application/
     
 ## README describing the project.
-### https://github.com/anitapeppercorn/Weather-Dashboard-Application/blob/master/Weatherapp%20Screen.png
+#### https://github.com/anitapeppercorn/Weather-Dashboard-Application/blob/master/Weatherapp%20Screen.png
 
 Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. I have been tasked with retrieving data from another application's API and using it in the context of my own to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
 
