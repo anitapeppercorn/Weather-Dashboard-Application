@@ -6,7 +6,7 @@ $(document).ready(function() {
         event.preventDefault();
         // This line grabs the input from the textbox
         var city = $("#city-input").val().trim();        
-        //pushed the value so the button can be recreated through local storage.
+        //push the value so the button can be recreated through local storage.
         cityHistory.push(city);
         storeButtons()
         // Adding cities from the textbox to array
@@ -29,14 +29,13 @@ $(document).ready(function() {
         createButtons.text(city);
         //prepend the city name into the div
         $("#search-history").prepend(createButtons);
-       
     }
     
     //display the selected city's current weather info
     function displayCurrentInfo(cityName){
         var api = "96428242b049309d31d51b7cb823fae0";
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ cityName +"&appid=" + api;
-      
+        //Fetch is compatible with all recent browsers including Edge, but not with Internet Explorer. Therefore, if you are looking for maximum compatibility, you will continue to use Ajax to update a web page. If you also want to interact with the server, the WebSocket object is also more appropriate than fetch  
         $.ajax({
         url: queryURL,
         method: "GET"
@@ -59,12 +58,14 @@ $(document).ready(function() {
              //function to findout the UV index of city based on its coordinate using closure
             var uvIndex = function(lat, lon){
                 var UVqueryURL = "http://api.openweathermap.org/data/2.5/uvi?appid="+ api +"&lat="+ lat +"&lon="+ lon;
+                //continue to use Ajax to update a web page
                 $.ajax({
                     url: UVqueryURL,
                     method: "GET"
                     }).then(function(response) {
                         console.log(response)
                         var uvValue = response.value;
+                        //Identify UV Safety Levels
                         var uvSafety = $("<span>").attr("id", "uvSafety").addClass("badge");
                         uvSafety.text(uvValue);
                          if (uvValue <= 2){
@@ -80,7 +81,6 @@ $(document).ready(function() {
             }
              //call uvIndex function using closure
             uvIndex(lat,lon);
-          
         })
     }
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
     function displayFutureInfo(cityName){
         var api = "96428242b049309d31d51b7cb823fae0";
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ cityName +"&appid=" + api;
-      
+        //continue to use Ajax to update a web page
         $.ajax({
         url: queryURL,
         method: "GET"
@@ -98,7 +98,7 @@ $(document).ready(function() {
             console.log(response);
             var index = [3,11,19,27,35];
             for(var i = 0; i < index.length; i++){
-                //look at working movie app activity for this
+                //create content
                 var createDiv = $("<div class = 'card'>");
                 var lineBreak = $("<br>");
   
@@ -127,7 +127,7 @@ $(document).ready(function() {
         })
     }
 
-    //function that handles the history buttons event
+    //function that renders information on clicking the history button as an event
     $(document).on("click", ".cityButtons", function(event) {
         event.preventDefault();
         var cityName = $(this).attr("data-name");
@@ -136,7 +136,7 @@ $(document).ready(function() {
         displayFutureInfo(cityName);
     })
 
-//storage------------------------------------------------------------
+//storage information
     function storeInput(cityName){
         localStorage.setItem("Last city searched", cityName);
     }
@@ -157,6 +157,5 @@ $(document).ready(function() {
         localStorage.setItem("history", JSON.stringify(cityHistory));
     }
 
-  
-    //when city history button is click, run through displayInfo function and print the info
+    //when city history button is clicked, run through displayInfo function to render the info
  })
